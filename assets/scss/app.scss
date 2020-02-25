@@ -1,0 +1,65 @@
+@import "~bootstrap/scss/bootstrap";
+@import 'vars';
+@import 'mixings';
+
+.container-gray {
+  background: #ededed;
+}
+
+.header-home {
+  background-color: #333;
+  div.menu {
+    overflow: auto;
+    white-space: nowrap;
+    a {
+      display: inline-block;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+      &:hover {
+        background-color: #777;
+      }
+    }
+  }
+}
+
+.form-budget-wrapper {
+  .form-wrapper {
+    margin-bottom: 20px;
+    input, select, textarea {
+      &.invalid {
+        background-color: #ffdddd;
+      }
+
+    }
+    .tab {
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+    button {
+      &#prevBtn {
+        background-color: #bbbbbb;
+      }
+    }
+    .step {
+      height: 15px;
+      width: 15px;
+      margin: 0 2px;
+      background-color: #bbbbbb;
+      border-radius: 50%;
+      display: inline-block;
+      opacity: 0.5;
+      &.active {
+        opacity: 1;
+        border: 1px solid #2f6729;
+      }
+      &.finish {
+        background-color: #4CAF50;
+      }
+    }
+  }
+}
+

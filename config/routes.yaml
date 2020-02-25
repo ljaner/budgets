@@ -1,0 +1,12 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+budgets:
+  type: annotation
+  resource: '../src/Infrastructure/Controller'
+
+api:
+  prefix: /api/v1/
+  type: annotation
+  resource: '../src/Infrastructure/Api'

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+
+ {% block body %}
+     <div class="container-fluid container-gray form-budget-wrapper">
+         <div class="container">
+             <div class="row">
+                 <h1 class="w-100 p-4 text-center">{{ 'budgetrequest.title'| trans}}</h1>
+                 <div class="w-100 p-1 text-center" >
+                     <p>{{ 'budgetrequest.description'| trans}}</p>
+                </div>
+             </div>
+         </div>
+         <div class="container">
+             <div class="row">
+                 <div class="col-sm">
+                     <ol class="w-100 mt-5">
+                         <li class="p-3 e1">Cuéntanos <strong>qué necesitas</strong></li>
+                         <li class="p-3 e2">Recibe hasta <strong>4 presupuestos de tu zona</strong></li>
+                         <li class="p-3 e3">Compara ofertas y <strong>elige (o no) la mejor</strong>
+                         </li>
+                     </ol>
+                 </div>
+                 <div class="col-sm">
+                     <div class="form-wrapper">
+                        {{ include('budget/form.html.twig') }}
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+{% endblock %}

@@ -1,0 +1,61 @@
+
+<form id="budget-request" action="{{ path('create_budget')}}" method="post">
+    <h2 class="mb-4">{{ 'budgetrequest.form.title'| trans}}</h2>
+    <div class="errors"></div>
+    <div class="tab active">
+        <div class="form-group">
+            <label for="description">{{ 'budgetrequest.form.description.title'| trans}}</label>
+            <textarea required class="form-control" name="description" aria-describedby="emailHelp" placeholder="{{ 'budgetrequest.form.description.placeholder'| trans}}"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="estimatedDate">Fecha</label>
+            <input type="date" class="form-control" name="date" placeholder="Fecha estimada del trabajo">
+        </div>
+    </div>
+    <div class="tab">
+        <div class="form-group">
+            <label for="category">Categoria</label>
+            <select required class="form-control" name="category">
+                <option value="" selected disabled hidden>Escoge una categoria.</option>
+                <option value="1" selected>Category 1</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="subcategory">Sub Categoria</label>
+            <select required class="form-control" name="subcategory">
+                <option value="" selected disabled hidden>Escoge una sub categoria</option>
+                <option value="1-1" selected>Sub Category 1</option>
+            </select>
+        </div>
+    </div>
+    <div class="tab">
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input required type="text" class="form-control" name="name" placeholder="Nombre">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input required type="email" class="form-control" name="email" aria-describedby="emailHelp" placeholder="Escribe tu email">
+        </div>
+        <div class="form-group">
+            <label for="phone">Telefono</label>
+            <input required type="text" class="form-control" name="phone" placeholder="Telefono">
+        </div>
+        <div class="form-group">
+            <label for="address">Dirección</label>
+            <input required type="text" class="form-control" name="address" placeholder="Dirección">
+        </div>
+    </div>
+    <div>
+        <div class="float-right">
+            <button type="button" id="prevBtn" class="btn">Previous</button>
+            <button type="button" id="nextBtn" class="btn btn-success" >Next</button>
+        </div>
+    </div>
+    <!-- Circles which indicates the steps of the form: -->
+    <div class="text-center pt-2">
+        <span class="step"></span>
+        <span class="step"></span>
+        <span class="step"></span>
+    </div>
+</form>

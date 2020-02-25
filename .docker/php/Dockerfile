@@ -1,0 +1,62 @@
+FROM php:7.2.5-fpm
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
+    build-essential locales acl mailutils wget nodejs zip unzip \
+    gnupg gnupg1 gnupg2 \
+    zlib1g-dev \
+    sudo
+
+RUN docker-php-ext-install pdo pdo_mysql zip
+
+COPY php.ini /usr/local/etc/php/php.ini
+COPY php-fpm-pool.conf 	/usr/local/etc/php/pool.d/www.conf
+
+RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
+	mv composer.phar /usr/local/bin/composer
+
+RUN wget --no-check-certificate https://phar.phpunit.de/phpunit-6.5.3.phar && \
+    mv phpunit*.phar phpunit.phar && \
+    chmod +x phpunit.phar && \
+    mv phpunit.phar /usr/local/bin/phpunit
+
+RUN	curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash - && \
+    apt install -y nodejs
+
+RUN apt-get update || apt-get update
+RUN apt-get install -y --force-yes nodejs && \
+	rm -f /etc/apt/sources.list.d/nodejs.list
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update
+RUN apt remove -y cmdtest && \
+    apt-get install -y yarn --allow-unauthenticated
+
+# Install and configure Xdebug
+RUN pecl install xdebug-2.6.0 \
+    && docker-php-ext-enable xdebug \
+    && sed -i '1 a xdebug.remote_autostart=true' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && sed -i '1 a xdebug.remote_mode=req' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && sed -i '1 a xdebug.remote_handler=dbgp' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && sed -i '1 a xdebug.remote_connect_back=1 ' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && sed -i '1 a xdebug.remote_port=9000' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && sed -i '1 a xdebug.remote_host=127.0.0.1' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && sed -i '1 a xdebug.remote_enable=1' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+RUN groupadd dev -g 999
+RUN useradd dev -g dev -d /home/dev -m
+RUN passwd -d dev
+
+RUN rm -rf /var/lib/apt/lists/*
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
+    echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen && \
+    locale-gen
+
+RUN echo "dev ALL=(ALL) ALL" > /etc/sudoers
+
+WORKDIR /home/wwwroot/
+##</romaricp>##
+
+EXPOSE 9000
+CMD ["php-fpm"]

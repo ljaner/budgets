@@ -1,0 +1,269 @@
+/* MIXINGS */
+@mixin responsive-sizing($breakpoint, $font-size, $line-height: false, $margin-top: false, $margin-bottom: false, $font-weight: false, $padding: false) {
+  @include breakpoint($breakpoint) {
+    font-size: $font-size;
+    @if ($line-height) {
+      line-height: $line-height;
+    }
+    @if ($margin-top) {
+      margin-top: $margin-top;
+    }
+    @if ($margin-bottom) {
+      margin-bottom: $margin-bottom;
+    }
+    @if ($font-weight) {
+      font-weight: $font-weight;
+    }
+    @if ($padding) {
+      padding: $padding;
+    }
+  }
+}
+
+@mixin breakpoint($breakpoint) {
+  @if ($breakpoint == $screen-size-xs-and-below) {
+    @media only screen and (max-width: ($breakpoint-xs - 1)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-xs-and-above) {
+    @media only screen and (min-width: ($breakpoint-xs)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-s-and-below) {
+    @media only screen and (max-width: ($breakpoint-s - 1)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-s-and-above) {
+    @media only screen and (min-width: ($breakpoint-s)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-s) {
+    @media only screen and (min-width: $breakpoint-xs) and (max-width: ($breakpoint-s - 1)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-m-and-below) {
+    @media only screen and (max-width: ($breakpoint-m - 1)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-m) {
+    @media only screen and (min-width: $breakpoint-s) and (max-width: ($breakpoint-m - 1)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-m-and-above) {
+    @media only screen and (min-width: $breakpoint-s) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-l-and-below) {
+    @media only screen and (max-width: ($breakpoint-l - 1)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-l) {
+    @media only screen and (min-width: $breakpoint-m) and (max-width: ($breakpoint-l - 1)) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-l-and-above) {
+    @media only screen and (min-width: $breakpoint-l) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-xl-and-above) {
+    @media only screen and (min-width: $breakpoint-xl) {
+      @content;
+    }
+  }
+  @if ($breakpoint == $screen-size-xxl-and-above) {
+    @media only screen and (min-width: $breakpoint-xxl) {
+      @content;
+    }
+  }
+}
+
+@mixin flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin target-ie10up-and-edge() {
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    @content;
+  }
+}
+
+@mixin antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin gradient-transparent($start-color: rgba(246, 249, 241, 0), $mid-color: rgba(246, 249, 241, .98), $end-color: rgba(246, 249, 241, 1)) {
+  background-image: -webkit-linear-gradient(top, $start-color 0%, $mid-color 31%, $end-color 100%);
+  background-image: -o-linear-gradient(top, $start-color 0%, $mid-color 31%, $end-color 100%);
+  background-image: linear-gradient(to bottom, $start-color 0%, $mid-color 31%, $end-color 100%);
+  background-repeat: no-repeat;
+}
+
+@mixin gradient-transparent-horizontal($start-color: rgba(246, 249, 241, 0), $mid-color: rgba(246, 249, 241, .98), $end-color: rgba(246,249,241,1)) {
+  background-image: -webkit-linear-gradient(left, $start-color 0%, $mid-color 31%, $end-color 100%);
+  background-image: -o-linear-gradient(left, $start-color 0%, $mid-color 31%, $end-color 100%);
+  background-image: linear-gradient(to right, $start-color 0%, $mid-color 31%, $end-color 100%);
+  background-repeat: no-repeat;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin bgpos($ht, $num) {
+  background-position: $ht $num;
+}
+
+@mixin before($mTop, $mRight) {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  margin: $mTop $mRight 0 0;
+}
+
+@mixin clear {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+@mixin list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin appearance($value: default, $important: '') {
+  -webkit-appearance: $value $important;
+  -moz-appearance: $value $important;
+  -o-appearance: $value $important;
+  appearance: $value $important;
+}
+
+/* From Compass Official reference http://compass-style.org/reference/compass/css3/transform/#mixin-transform */
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+
+/* From https://gist.github.com/garyharan/957284 */
+@mixin box-shadow($shadow1, $shadow2:false) {
+  $params: $shadow1;
+  @if $shadow2 {
+    $params: $shadow1, $shadow2;
+  }
+  -webkit-box-shadow: $params;
+  -moz-box-shadow: $params;
+  box-shadow: $params;
+}
+
+@mixin opacity($value) {
+  $IEValue: $value*100;
+  opacity: $value;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+  filter: alpha(opacity=$IEValue);
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin basic-copy($isBold: false) {
+  font-family: $font-family-dinot;
+  @if ($isBold) {
+    font-weight: 700;
+  } @else {
+    font-weight: 300;
+  }
+}
+
+@mixin basic-headline($isBold: false) {
+  font-family: $font-family-dinot;
+  color: $color-grey-1;
+  @if ($isBold) {
+    font-weight: 700;
+  } @else {
+    font-weight: 300;
+  }
+}
+
+@mixin bottom-line($color: $color-grey-5, $bottom: -30px) {
+  position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    border-bottom: 1px solid $color;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: $bottom;
+  }
+}
+
+@mixin module-space {
+  margin-bottom: 70px;
+  @include breakpoint($screen-size-s-and-below) {
+    margin-bottom: 40px;
+  }
+}
+
+@mixin close-icon($color:$color-grey-5, $size: 30px, $thickness:3px, $hoverColor: $color) {
+  position: relative;
+  width: $size;
+  height: $size;
+  cursor: pointer;
+
+  &:before, &:after {
+    position: absolute;
+    left: 50%;
+    content: '';
+    height: $size;
+    width: $thickness;
+    background-color: $color;
+  }
+
+  &:before {
+    @include transform(rotate(-45deg));
+  }
+
+  &:after {
+    @include transform(rotate(45deg));
+  }
+
+  &:hover {
+    &:before, &:after {
+      border-color: $hoverColor;
+      transition: border-color linear 0.3s;
+    }
+  }
+}
+
+@mixin center-align($position: relative) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
+}
+

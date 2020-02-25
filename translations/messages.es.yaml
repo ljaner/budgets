@@ -1,0 +1,8 @@
+budgetrequest:
+  title: Pide presupuesto
+  description: Construcciones y reformas, instalaciones, limpieza, mudanzas, arquitectos y mas...
+  form:
+    title: Solicita presupuesto en un minuto
+    description:
+      title: Descripción
+      placeholder: Descripción del trabajo

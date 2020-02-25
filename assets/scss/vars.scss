@@ -1,0 +1,35 @@
+
+$font-family: sans-serif;
+$font-family-base: $font-family !default;
+
+$font-size-base:          18px !default;
+$font-size-h1:            1.7778em !default;
+$font-size-h2:            1.3333em !default;
+
+$max-width: 1192px;
+$total-width: 1600px;
+
+$section-minheight-desktop: 720px;
+$section-minheight-mobile: 360px;
+
+$breakpoint-xs: 480px !default;
+$breakpoint-s: 768px !default;
+$breakpoint-m: 992px !default;
+$breakpoint-l: 1200px !default;
+$breakpoint-xl: 1600px !default;
+$breakpoint-xxl: 2400px !default;
+
+//Screen sizes for the breakpoint mixin so we get IDE autocompletion fun
+$screen-size-xs-and-below: 'screen-size-xs-and-below';
+$screen-size-xs-and-above: 'screen-size-xs-and-above';
+$screen-size-s-and-below: 'screen-size-s-and-below';
+$screen-size-s: 'screen-size-s';
+$screen-size-s-and-above: 'screen-size-s-and-above';
+$screen-size-m-and-below: 'screen-size-m-and-below';
+$screen-size-m: 'screen-size-m';
+$screen-size-m-and-above: 'screen-size-m-and-above';
+$screen-size-l-and-below: 'screen-size-l-and-below';
+$screen-size-l: 'screen-size-l';
+$screen-size-l-and-above: 'screen-size-l-and-above';
+$screen-size-xl-and-above: 'screen-size-xl-and-above';
+$screen-size-xxl-and-above: 'screen-size-xxl-and-above';
